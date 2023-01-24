@@ -8,7 +8,7 @@ function get_products(): array
 {
     global $pdo;
     $res = $pdo->query("SELECT * FROM products");
-    return $res->fetch();
+    return $res->fetchAll();
 }
 
 
