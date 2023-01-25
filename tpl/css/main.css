@@ -107,6 +107,8 @@ img {
 	max-height: 500px;
 }
 
+
+
 @media only screen and (max-width : 734px) {
 	.product-cards{
 		justify-content: center;

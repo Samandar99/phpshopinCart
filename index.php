@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(-1);
 
 require_once __DIR__ . '/inc/db.php';
@@ -24,7 +25,7 @@ debug($products);
 
     <link rel="stylesheet" href="assets/css/main.css">
 
-    <title>Hello, world!</title>
+    <title>Cart</title>
 </head>
 
 <body>
@@ -62,7 +63,7 @@ debug($products);
 
     <div class="wrapper mt-5">
         <div class="container">
-            <div class="row">
+            <div class="row block">
                 <div class="product-cards mb-5">
 
                     <?php if (!empty($products)) ?>
@@ -78,19 +79,22 @@ debug($products);
                             <?php endif;?>
                         </div>
                         <div class="card-thumb">
-                            <a href="product.html"><img src="img/1.jpg" alt=""></a>
+                            <a href="#"><img src="img/<?=$products['img']?>" alt="<?=$products['title'] ?>"></a>
                         </div>
                         <div class="card-caption">
                             <div class="card-title">
-                                <a href="product.html">CORT AD810M Акустическая гитара</a>
+                                <a href="#"><?=$products['title'] ?></a>
                             </div>
                             <div class="card-price text-center">
-                                <del>3142 грн.</del>
-                                2 799 грн.
+                                <?php if ($products['old_price']): ?>
+                                <del><?=$products['old_price']?> грн.</del>
+                                <?php endif; ?>
+                                <?=$products['price']?> грн.
                             </div>
-                            <button type="button" class="btn btn-info btn-block card-addtocart">
+                            <a href="?cart=add&id=<?=$products['id'] ?>" class="btn btn-info btn-block add-to-cart"
+                                data-id="<?=$products['id'] ?>">
                                 <i class="fas fa-cart-arrow-down"></i> Купить
-                            </button>
+                            </a>
                             <div class="item-status"><i class="fas fa-check text-success"></i> В наличии</div>
                         </div>
                     </div><!-- /product-card -->
