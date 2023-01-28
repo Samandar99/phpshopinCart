@@ -49,8 +49,9 @@ debug($products);
                     <a class="nav-link" href="#">Гитарное оборудование</a>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart-modal">
-                        Корзина <span class="badge badge-light">3</span>
+                    <button id="get-cart" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#cart-modal">
+                        Корзина <span class="badge badge-light mini-cart-qty"><?= $_SESSION['cart.qty'] ?? 0 ?></span>
                     </button>
                 </li>
             </ul>
@@ -60,6 +61,10 @@ debug($products);
             </form>
         </div>
     </nav>
+
+
+
+    <?php // debug($_SESSION); // session_destroy() ?>
 
     <div class="wrapper mt-5">
         <div class="container">
@@ -130,40 +135,8 @@ debug($products);
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="product.html"><img src="img/1.jpg"
-                                            alt="CORT AD810M Акустическая гитара"></a></td>
-                                <td><a href="product.html">CORT AD810M Акустическая гитара</a></td>
-                                <td>2 799</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td><a href="product.html"><img src="img/2.jpg"
-                                            alt="Crafter D6/N Акустическая гитара"></a></td>
-                                <td><a href="product.html">Crafter D6/N Акустическая гитара</a></td>
-                                <td>12 626</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" align="right">Товаров: 3 <br> Сумма: 28 051 грн.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Оформить заказ</button>
+                <div class="modal-cart-content">
+
                 </div>
             </div>
         </div>

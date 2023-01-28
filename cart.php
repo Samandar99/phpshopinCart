@@ -13,9 +13,26 @@ if(isset($_GET['cart'])){
         if(!$product){
             echo json_encode(['code' => 'error', 'answer' => 'Error']);
         } else {
-            echo json_encode(['code' => 'ok', 'answer' => $product]);
+            add_to_cart($product);
+            ob_start();
+            require __DIR__ . './cart-modal.php';
+            $cart = ob_get_clean();
+            echo json_encode(['code' => 'ok', 'answer' => $cart]);
         }
         break;
+        case "show":
+            require __DIR__ . '/cart-modal.php';
+            break;
+
+        case "clear":
+            if(!empty($_SESSION['cart'])){
+                unset($_SESSION['cart']);
+                unset($_SESSION['cart.sum']);
+                unset($_SESSION['cart.qty']);
+            }
+            require __DIR__ . '/cart-modal.php';
+            break;
+    
     }
 }
 
